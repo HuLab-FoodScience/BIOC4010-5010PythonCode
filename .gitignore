@@ -1,2 +1,4 @@
 myvenv/
 venv/
+# ignore files of .png
+*.png
