@@ -6,6 +6,8 @@ from collections import Counter
 import argparse
 import numpy as np
 import pandas as pd
+import matplotlib
+matplotlib.use('Agg')  # Use non-interactive backend for Docker
 import matplotlib.pyplot as plt
 
 from sklearn.model_selection import StratifiedKFold, LeaveOneOut, cross_val_predict
@@ -137,7 +139,11 @@ def main():
         cm = confusion_matrix(y, y_pred, labels=class_labels)
         plot_cm(ax, cm, labels=class_labels, title=f"{name}\n{cv_mode.upper()} Acc={acc*100:.2f}%")
     fig.tight_layout()
-    plt.show()
+    # Save plot instead of showing (for Docker compatibility)
+    plot_filename = f"cv_results_{cv_mode.lower()}.png"
+    plt.savefig(plot_filename, dpi=300, bbox_inches='tight')
+    print(f"Cross-validation plot saved as: {plot_filename}")
+    plt.close()
 
     # External test (optional)
     if test_csv:
@@ -156,7 +162,11 @@ def main():
             cm = confusion_matrix(ytest, yhat, labels=class_labels)
             plot_cm(ax, cm, labels=class_labels, title=f"{name}\nTest Acc={acc*100:.2f}%")
         fig.tight_layout()
-        plt.show()
+        # Save plot instead of showing (for Docker compatibility)
+        test_plot_filename = "external_test_results.png"
+        plt.savefig(test_plot_filename, dpi=300, bbox_inches='tight')
+        print(f"External test plot saved as: {test_plot_filename}")
+        plt.close()
 
 if __name__ == "__main__":
     main()
