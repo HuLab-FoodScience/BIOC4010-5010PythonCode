@@ -48,17 +48,6 @@ docker-compose exec ml-classification bash
 python ml-classification_v2.0.py --models rf --cv loocv --train EXAMPLE_CSV.csv
 ```
 
-### Viewing Results
-
-```bash
-# List generated plot files
-python view_plots.py
-
-# Copy plots to your host machine
-docker cp raman-ml:/app/cv_results_loocv.png .
-docker cp raman-ml:/app/external_test_results.png .
-```
-
 ### Restarting After Code Changes
 
 ```bash
@@ -137,11 +126,6 @@ docker-compose up -d
 chmod +x run_docker.sh
 ```
 
-**Plots not showing:**
-- Plots are saved as PNG files in the container
-- Use `python view_plots.py` to list available plots
-- Copy plots to host: `docker cp raman-ml:/app/plot_name.png .`
-
 **Need to rebuild after dependency changes:**
 ```bash
 ./run_docker.sh --rebuild
@@ -157,7 +141,6 @@ chmod +x run_docker.sh
 ./docker_helpers.sh logs      # View container logs
 ./docker_helpers.sh status    # Check container status
 ./docker_helpers.sh clean     # Clean up everything
-./docker_helpers.sh copy-plots # Copy plot files to host
 ```
 
 **Manual Docker commands:**
