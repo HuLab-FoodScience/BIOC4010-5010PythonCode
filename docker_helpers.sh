@@ -33,12 +33,6 @@ case "$1" in
         docker system prune -f
         echo "✅ Cleanup complete."
         ;;
-    "copy-plots")
-        echo "📈 Copying plots to host..."
-        docker cp raman-ml:/app/cv_results_loocv.png . 2>/dev/null || echo "No cv_results_loocv.png found"
-        docker cp raman-ml:/app/external_test_results.png . 2>/dev/null || echo "No external_test_results.png found"
-        echo "✅ Plots copied to current directory."
-        ;;
     *)
         echo "🔧 Docker Helper Commands:"
         echo "  ./docker_helpers.sh start     - Start container"
@@ -47,6 +41,5 @@ case "$1" in
         echo "  ./docker_helpers.sh logs     - View container logs"
         echo "  ./docker_helpers.sh status   - Check container status"
         echo "  ./docker_helpers.sh clean    - Clean up everything"
-        echo "  ./docker_helpers.sh copy-plots - Copy plot files to host"
         ;;
 esac
