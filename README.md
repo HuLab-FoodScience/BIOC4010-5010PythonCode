@@ -6,9 +6,9 @@ A machine learning classification tool for MS or spectroscopy data that supports
 
 - **Multiple ML Algorithms**: Random Forest, Support Vector Machine (SVM), and K-Nearest Neighbors (KNN)
 - **Cross-Validation**: K-fold cross-validation or Leave-One-Out Cross-Validation (LOOCV)
-- **Feature Selection**: Automatic feature selection using mutual information for SVM and KNN
+- **Feature Selection**: Automatic feature selection based on RF. Features are then used for SVM and KNN
 - **External Testing**: Optional external test set evaluation
-- **Visualization**: Confusion matrix plots for model performance assessment
+- **Visualization**: Confusion matrix plots and performance metric table for model performance assessment
 - **Flexible Configuration**: Command-line arguments and configurable parameters
 
 ## Quick Start with Docker (Recommended)
