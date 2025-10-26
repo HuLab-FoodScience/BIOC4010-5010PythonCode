@@ -1,6 +1,6 @@
 # Raman ML Classification Tool
 
-A machine learning classification tool for Raman spectroscopy data that supports multiple algorithms (Random Forest, SVM, KNN) with cross-validation and optional external testing.
+A machine learning classification tool for MS or spectroscopy data that supports multiple algorithms (Random Forest, SVM, KNN) with cross-validation and optional external testing.
 
 ## Features
 
