@@ -11,27 +11,18 @@ A machine learning classification tool for Raman spectroscopy data that supports
 - **Visualization**: Confusion matrix plots for model performance assessment
 - **Flexible Configuration**: Command-line arguments and configurable parameters
 
-## Quick Start with Docker (Recommended)
+## Quick Start
 
-The easiest way to run this tool is using Docker, which provides a consistent Python 3.11 environment:
-
-Install docker
-
-
-```bash
-# Build and start the container
-./run_docker.sh
-
-# Inside the container, run your analysis
-python ml-classification_v2.0.py --models rf --cv loocv --train EXAMPLE_CSV.csv
-```
+The recommended way to set up the environment is to use Docker. The alternative way would be to set up a Python virtual environment on your local machine.
 
 ## Docker Usage
+
+Install docker on your machine
 
 ### First Time Setup
 
 ```bash
-# Build the Docker image (first time only)
+# Build the Docker image in current directory (first time only)
 docker-compose build
 
 # Start the container
@@ -57,12 +48,14 @@ docker-compose up -d
 docker-compose exec ml-classification bash
 
 # For dependency changes (requirements.txt, Dockerfile)
-./run_docker.sh --rebuild
+docker-compose build --no-cache
 ```
 
 ## Local Installation (Alternative)
 
 If you prefer to run locally without Docker:
+
+Set up your python [virtual environment](https://docs.python.org/3/library/venv.html) with python version >= 3.11
 
 ```bash
 pip install -r requirements.txt
@@ -120,36 +113,23 @@ docker-compose down
 docker-compose up -d
 ```
 
-**Permission issues:**
-```bash
-# Make sure the script is executable
-chmod +x run_docker.sh
-```
-
 **Need to rebuild after dependency changes:**
 ```bash
-./run_docker.sh --rebuild
+docker-compose build --no-cache
 ```
 
 ### Docker Commands Reference
 
-**Using the helper script (recommended):**
-```bash
-./docker_helpers.sh start     # Start container
-./docker_helpers.sh stop      # Stop container
-./docker_helpers.sh restart   # Restart container
-./docker_helpers.sh logs      # View container logs
-./docker_helpers.sh status    # Check container status
-./docker_helpers.sh clean     # Clean up everything
-```
-
-**Manual Docker commands:**
+**Docker commands:**
 ```bash
 # Start container
 docker-compose up -d
 
 # Stop container
 docker-compose down
+
+# Container status
+docker-compose ps
 
 # Get into container
 docker-compose exec ml-classification bash
